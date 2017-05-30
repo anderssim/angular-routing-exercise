@@ -1,0 +1,47 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{pageTitle}}
+    </div>
+
+    <div class="panel-body" *ngIf="product">
+        <div class="wizard">
+            <a [routerLink]="['info']" routerLinkActive="active">
+                Basic Information <span [ngClass]="{'glyphicon glyphicon-exclamation-sign': !isValid('info')}"></span>
+                </a>
+            <a [routerLink]="['tags']" routerLinkActive="active">
+                Search Tags <span [ngClass]="{'glyphicon glyphicon-exclamation-sign': !isValid('tags')}"></span>
+            </a>
+        </div>
+    </div>
+
+    <router-outlet></router-outlet>
+    
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-2">
+                <span>
+                    <button class="btn btn-primary"
+                        type="button"
+                        style="width: 80px; margin-right: 10px"
+                        (click)="saveProduct()"
+                        [disabled]="!isValid()">
+                        Save
+                    </button>
+                </span>
+                <span>
+                    <button class="btn btn-default"
+                        [routerLink]="['/products']">
+                        Cancel
+                    </button>
+                </span>
+                <span>
+                    <button class="btn btn-default"
+                        (click)="deleteProduct()">
+                        Delete
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+</div>
